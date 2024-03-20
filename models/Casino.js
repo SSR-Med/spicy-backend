@@ -1,5 +1,8 @@
+// Dependencies
 const { DataTypes } = require('sequelize');
+// Modules
 const { sequelize } = require('../config/Database');
+// Models
 const Casino_Carta = require('./Casino_Carta');
 
 const Casino = sequelize.define('Casino', {

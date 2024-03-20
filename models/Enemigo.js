@@ -1,4 +1,6 @@
+// Dependencies
 const { DataTypes } = require('sequelize');
+// Modules
 const { sequelize } = require('../config/Database');
 
 const Enemigo = sequelize.define('Enemigo', {

@@ -1,5 +1,8 @@
+// Dependencies
 const { DataTypes } = require('sequelize');
+// Modules
 const { sequelize } = require('../config/Database');
+// Models
 const Mision = require('./Mision');
 
 const Mundo = sequelize.define('Mundo', {

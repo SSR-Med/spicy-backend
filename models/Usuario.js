@@ -1,5 +1,8 @@
+// Dependencies
 const { DataTypes } = require('sequelize');
+// Modules
 const { sequelize } = require('../config/Database');
+// Models
 const Carta_Usuario = require('./Carta_Usuario');
 const Mision_Usuario = require('./Mision_Usuario');
 
