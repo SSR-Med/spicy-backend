@@ -3,7 +3,7 @@ const express = require('express')
 // Modules
 const {sequelize} = require('../../config/Database')
 // Services
-const { login } = require('../../services/user/User')
+const { login } = require('../../services/user/UserService')
 
 const router = express.Router()
 router.use(express.json())

@@ -22,5 +22,5 @@ const Casino = sequelize.define('Casino', {
     },
 }, {tableName: 'casino'});
 
-Casino.hasMany(Casino_Carta);
+Casino.hasMany(Casino_Carta, {onDelete: 'cascade'});
 module.exports = Casino;

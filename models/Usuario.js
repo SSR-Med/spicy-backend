@@ -30,7 +30,7 @@ const Usuario = sequelize.define('Usuario', {
     }
 }, {tableName: 'usuario'});
 
-Usuario.hasMany(Carta_Usuario);
-Usuario.hasMany(Mision_Usuario);
+Usuario.hasMany(Carta_Usuario, {onDelete: 'cascade'});
+Usuario.hasMany(Mision_Usuario, {onDelete: 'cascade'});
 
 module.exports = Usuario;

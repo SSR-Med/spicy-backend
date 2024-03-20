@@ -30,7 +30,7 @@ const Mision = sequelize.define('Mision', {
     },
 }, {tableName: 'mision'});
 
-Mision.hasMany(Mision_Usuario);
-Mision.hasMany(enemigo);
+Mision.hasMany(Mision_Usuario, {onDelete: 'cascade'});
+Mision.hasMany(enemigo, {onDelete: 'cascade'});
 
 module.exports = Mision;

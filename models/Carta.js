@@ -44,8 +44,8 @@ const Carta = sequelize.define('Carta', {
     },
 }, {tableName: 'carta'});
 
-Carta.hasMany(Carta_Usuario);
-Carta.hasMany(Casino_Carta);
-Carta.hasMany(Enemigo);
+Carta.hasMany(Carta_Usuario, {onDelete: 'cascade'});
+Carta.hasMany(Casino_Carta, {onDelete: 'cascade'});
+Carta.hasMany(Enemigo, {onDelete: 'cascade'});
 
 module.exports = Carta;

@@ -18,6 +18,6 @@ const Mundo = sequelize.define('Mundo', {
     },
 }, {tableName: 'mundo'});
 
-Mundo.hasMany(Mision);
+Mundo.hasMany(Mision, {onDelete: 'cascade'});
 
 module.exports = Mundo;
