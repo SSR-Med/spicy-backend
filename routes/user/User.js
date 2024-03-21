@@ -22,7 +22,7 @@ router.get('/', verifyToken, checkAdmin, async (req, res) => {
     }
 });
 // Delete /user : Delete a user (Only admin)
-router.delete('/:id', verifyToken, checkAdmin, async (req, res) => {
+router.delete('/id/:id', verifyToken, checkAdmin, async (req, res) => {
     try{
         const user = await deleteUser(req.params.id)
         if (user) {
@@ -35,7 +35,7 @@ router.delete('/:id', verifyToken, checkAdmin, async (req, res) => {
     }
 })
 // Put /user : Modify a user (Only admin)
-router.put('/:id', verifyToken, checkAdmin, async (req, res) => {
+router.put('/id/:id', verifyToken, checkAdmin, async (req, res) => {
     try{
         const user = await modifyUser(req.params.id,req.body.username,req.body.password,req.body.admin,req.body.objects)
         if (user) {
