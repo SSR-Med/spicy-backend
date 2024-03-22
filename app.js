@@ -5,7 +5,7 @@ const { port } = require('./config/Config')
 // Modules
 const { sequelize } = require('./config/Database')
 // Models
-/*
+
 const Usuario = require('./models/Usuario')
 const Carta = require('./models/Carta')
 const Carta_Usuario = require('./models/Carta_Usuario')
@@ -15,7 +15,7 @@ const Casino = require('./models/Casino')
 const Casino_Carta = require('./models/Casino_Carta')
 const Enemigo = require('./models/Enemigo')
 const Mundo = require('./models/Mundo')
-*/
+
 // App
 const app = express()
 

@@ -18,10 +18,6 @@ const Carta = sequelize.define('Carta', {
         allowNull: false,
         unique: true,
     },
-    tipo: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     rareza: {
         type: DataTypes.STRING,
         allowNull: false,
