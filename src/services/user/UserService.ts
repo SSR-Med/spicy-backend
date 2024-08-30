@@ -12,16 +12,17 @@ import { jwt_key, jwt_expires_in } from "../../config/Constants";
 // Schemas
 import { registerInterface } from "../../schemas/UserSchema";
 
-export async function login(email:string,password:string){
-    const searchUserEmail = await User.findOne({where:{email: email}});
-    if(!searchUserEmail){
+export async function login(name:string,password:string){
+    name = capitalizeWords(deleteBlankSpaces(name));
+    const searchUser = await User.findOne({where:{name:name}});
+    if(!searchUser){
         throw new httpError("Credenciales invalidas",404);
     }
-    const compare = await comparePassword(password,searchUserEmail.password);
+    const compare = await comparePassword(password,searchUser.password);
     if(!compare){
         throw new httpError("Credenciales invalidas",400);
     }
-    const id = searchUserEmail.id;
+    const id = searchUser.id;
     const token = jwt.sign({ id }, jwt_key, { expiresIn: jwt_expires_in });
     return token;
 }

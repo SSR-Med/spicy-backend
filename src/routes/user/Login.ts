@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post("/", validateRegister, async (req,res)=>{
     try{
-        const token = await login(req.body.email,req.body.password);
+        const token = await login(req.body.name,req.body.password);
         res.status(200).json({token});
     }catch(error:any){
         errorHandler(error,res);
