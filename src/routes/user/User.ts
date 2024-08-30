@@ -1,7 +1,7 @@
 // Dependencies
 import express from 'express';
 // Services
-import { changePassword, getName, deleteSelf, register} from '../../services/user/UserService';
+import { changePassword, getName, deleteSelf, register, getRole} from '../../services/user/UserService';
 // Custom error
 import { errorHandler } from '../../config/CustomError';
 // Schemas
@@ -33,6 +33,15 @@ router.delete("/",verifyToken,async (req,res) => {
 router.get("/name",verifyToken,async (req,res) => {
     try{
         const response = await getName(Number(req.params.idToken));
+        res.status(200).json(response);
+    }catch(error){
+        errorHandler(error,res);
+    }
+})
+
+router.get("/role", verifyToken, async (req,res) => {
+    try{
+        const response = await getRole(Number(req.params.idToken));
         res.status(200).json(response);
     }catch(error){
         errorHandler(error,res);
