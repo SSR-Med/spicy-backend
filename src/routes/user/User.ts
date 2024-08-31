@@ -1,7 +1,10 @@
 // Dependencies
 import express from 'express';
 // Services
-import { changePassword, getName, deleteSelf, register, getRole} from '../../services/user/UserService';
+import { changePassword, getName, deleteSelf, register, getRole, checkAdmin,
+    getResources
+} from '../../services/user/UserService';
+import { createToken } from '../../helpers/Token';
 // Custom error
 import { errorHandler } from '../../config/CustomError';
 // Schemas
@@ -57,5 +60,33 @@ router.post("/register",validateRegister,async (req,res) => {
     }
 })
 
+router.get("/token", verifyToken, async (req,res) => {
+    try{
+        const token = createToken(Number(req.params.idToken));
+        res.status(200).json({token});
+    }catch(error){
+        errorHandler(error,res);
+    }
+})
+
+router.get("/admin", verifyToken, async (req,res) => {
+    try{
+        const response = await checkAdmin(Number(req.params.idToken));
+        res.status(200).json({
+            admin: response
+        });
+    }catch(error){
+        errorHandler(error,res);
+    }
+})
+
+router.get("/resources", verifyToken, async (req,res) => {
+    try{
+        const response = await getResources(Number(req.params.idToken));
+        res.status(200).json(response);
+    }catch(error){
+        errorHandler(error,res);
+    }
+})
 
 module.exports = router;

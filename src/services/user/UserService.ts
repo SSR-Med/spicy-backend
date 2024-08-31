@@ -63,3 +63,15 @@ export async function register(registerInterface:registerInterface){
     await User.create({...registerInterface, password:hashPassword(registerInterface.password)});
     return {"message":"Usuario creado"};
 }
+
+export async function checkAdmin(id:number){
+    const user = await User.findOne({where:{id:id}});
+    if(!user) throw new httpError("Usuario no encontrado",404);
+    if(user.role === 'user') return false; else return true;
+}
+
+export async function getResources(id:number){
+    const user = await User.findOne({where:{id:id}});
+    if(!user) throw new httpError("Usuario no encontrado",404);
+    return {energy:user.energy,boosters:user.boosters,tokens:user.tokens};
+}

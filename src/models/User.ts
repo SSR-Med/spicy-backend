@@ -24,9 +24,17 @@ export const User = database.define('user',{
         values: roleSchema,
         defaultValue: 'user'
     },
-    objects: {
-        type: DataTypes.JSONB,
-        allowNull: true
+    energy:{
+        type: DataTypes.INTEGER,
+        defaultValue: 100
+    },
+    boosters:{
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+    },
+    tokens:{
+        type: DataTypes.INTEGER,
+        defaultValue: 0
     }
 },
 {

@@ -3,7 +3,7 @@ import {z} from 'zod';
 // Validator
 import { validate } from '../helpers/Validator';
 
-export const roleSchema = ['superadmin','role','user'];
+export const roleSchema = ['superadmin','admin','user'];
 
 // Interfaces
 export interface registerInterface{
@@ -13,35 +13,43 @@ export interface registerInterface{
 
 export interface createUserInterface extends registerInterface{
     role: string,
-    objects: Record<string, any>
+    energy?: number,
+    boosters?: number,
+    tokens?: number
 }
 
 export interface modifyUserInterface{
     name: string,
     password?: string,
     role: string,
-    objects: Record<string, any>
+    energy: number,
+    boosters: number,
+    tokens: number
 }
 
 // Schemas
 export const registerSchema = z.object({
-    name: z.string().min(4),
-    password: z.string().min(8)
+    name: z.string().min(1),
+    password: z.string().min(1)
 });
 export const createUserSchema = registerSchema.extend({
     role: z.enum(roleSchema as [string, ...string[]]),
-    objects: z.record(z.any())
+    energy: z.number().int().min(0).optional(),
+    boosters: z.number().int().min(0).optional(),
+    tokens: z.number().int().min(0).optional()
 });
 export const modifyUserSchema = z.object({
-    name: z.string().min(4),
-    password: z.string().min(8).nullable().optional(),
+    name: z.string().min(1),
+    password: z.string().min(1).nullable().optional(),
     role: z.enum(roleSchema as [string, ...string[]]),
-    objects: z.record(z.any())
+    energy: z.number().int().min(0),
+    boosters: z.number().int().min(0),
+    tokens: z.number().int().min(0)
 });
 
 const changePasswordSchema = z.object({
-    oldPassword: z.string().min(8),
-    newPassword: z.string().min(8),
+    oldPassword: z.string().min(1),
+    newPassword: z.string().min(1),
 }).strict()
 
 // Validator

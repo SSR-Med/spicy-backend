@@ -19,10 +19,6 @@ export async function verifyToken(req: Request, res: Response, next: NextFunctio
         if (!user) {
             return res.status(404).json({ message: 'No es valido el token' });
         }
-        if(!user.active){
-            return res.status(403).json({ message: 'Usuario inactivo' });
-        }
-
         next();
     } catch (error) {
         return res.status(403).json({ message: 'No es valido el token' });
