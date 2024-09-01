@@ -14,7 +14,6 @@ export interface registerInterface{
 export interface createUserInterface extends registerInterface{
     role: string,
     energy?: number,
-    boosters?: number,
     tokens?: number
 }
 
@@ -23,7 +22,6 @@ export interface modifyUserInterface{
     password?: string,
     role: string,
     energy: number,
-    boosters: number,
     tokens: number
 }
 
@@ -34,17 +32,15 @@ export const registerSchema = z.object({
 });
 export const createUserSchema = registerSchema.extend({
     role: z.enum(roleSchema as [string, ...string[]]),
-    energy: z.number().int().min(0).optional(),
-    boosters: z.number().int().min(0).optional(),
-    tokens: z.number().int().min(0).optional()
+    energy: z.number().int().min(0).positive().optional(),
+    tokens: z.number().int().min(0).positive().optional()
 });
 export const modifyUserSchema = z.object({
     name: z.string().min(1),
     password: z.string().min(1).nullable().optional(),
     role: z.enum(roleSchema as [string, ...string[]]),
-    energy: z.number().int().min(0),
-    boosters: z.number().int().min(0),
-    tokens: z.number().int().min(0)
+    energy: z.number().int().min(0).positive(),
+    tokens: z.number().int().min(0).positive()
 });
 
 const changePasswordSchema = z.object({

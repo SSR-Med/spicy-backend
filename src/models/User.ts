@@ -28,10 +28,6 @@ export const User = database.define('user',{
         type: DataTypes.INTEGER,
         defaultValue: 100
     },
-    boosters:{
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-    },
     tokens:{
         type: DataTypes.INTEGER,
         defaultValue: 0
