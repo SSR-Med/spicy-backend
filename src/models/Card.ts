@@ -15,7 +15,7 @@ export const Card = database.define('card',{
         unique: true
     },
     rarity: {
-        type: DataTypes.STRING,
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
     health:{
