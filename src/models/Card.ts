@@ -16,7 +16,7 @@ export const Card = database.define('card',{
     },
     rarity: {
         type: DataTypes.DOUBLE,
-        allowNull: false
+        allowNull: false,
     },
     health:{
         type: DataTypes.INTEGER,
@@ -31,6 +31,10 @@ export const Card = database.define('card',{
         allowNull: false
     },
     evasion:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    xp_limit: {
         type: DataTypes.INTEGER,
         allowNull: false
     }

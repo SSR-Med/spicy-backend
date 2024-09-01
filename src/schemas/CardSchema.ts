@@ -10,17 +10,19 @@ export interface cardInterface{
     health: number,
     attack: number,
     defense: number,
-    evasion: number
+    evasion: number,
+    xp_limit: number
 }
 
 // Schemas
 export const cardSchema = z.object({
     name: z.string().min(1),
-    rarity: z.number().min(0).max(1).positive(),
-    health: z.number().int().min(0).positive(),
-    attack: z.number().int().min(0).positive(),
-    defense: z.number().int().min(0).positive(),
-    evasion: z.number().int().min(0).positive(),
+    rarity: z.number().min(0).max(1).min(0),
+    health: z.number().int().min(0),
+    attack: z.number().int().min(0),
+    defense: z.number().int().min(0),
+    evasion: z.number().int().min(0),
+    xp_limit: z.number().int().min(0)
 });
 
 // Validator

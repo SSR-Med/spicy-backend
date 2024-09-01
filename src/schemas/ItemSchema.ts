@@ -12,7 +12,7 @@ export interface itemInterface{
 // Schema
 export const ItemSchema = z.object({
     name: z.string().min(3).max(50),
-    xp: z.number().int().positive()
+    xp: z.number().int().min(0)
 });
 
 // Validator

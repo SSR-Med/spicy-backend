@@ -32,15 +32,15 @@ export const registerSchema = z.object({
 });
 export const createUserSchema = registerSchema.extend({
     role: z.enum(roleSchema as [string, ...string[]]),
-    energy: z.number().int().min(0).positive().optional(),
-    tokens: z.number().int().min(0).positive().optional()
+    energy: z.number().int().min(0).optional(),
+    tokens: z.number().int().min(0).optional()
 });
 export const modifyUserSchema = z.object({
     name: z.string().min(1),
     password: z.string().min(1).nullable().optional(),
     role: z.enum(roleSchema as [string, ...string[]]),
-    energy: z.number().int().min(0).positive(),
-    tokens: z.number().int().min(0).positive()
+    energy: z.number().int().min(0),
+    tokens: z.number().int().min(0)
 });
 
 const changePasswordSchema = z.object({
