@@ -14,8 +14,6 @@ export async function createCard(card: cardInterface, userId:number) {
     // Check permissions
     if (user.role === "user") throw new httpError("No tienes permisos para crear una carta", 401);
 
-    // Change the card name
-    card.name = capitalizeWords(deleteBlankSpaces(card.name));
     // Check if the card already exists
     const searchCard = await Card.findOne({ where: { name: card.name } });
     if (searchCard) throw new httpError("Carta ya existente", 400);
@@ -59,9 +57,6 @@ export async function updateCard(cardId: number, card: cardInterface, userId: nu
     // Search for the card
     const searchCard = await Card.findOne({ where: { id: cardId } });
     if (!searchCard) throw new httpError("Carta no encontrada", 404);
-
-    // Change the card name
-    card.name = capitalizeWords(deleteBlankSpaces(card.name));
     
     // Check if the card already exists
     if (searchCard.name !== card.name) {
