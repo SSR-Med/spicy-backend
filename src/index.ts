@@ -19,6 +19,7 @@ import { Item } from './models/Item';
 import { ItemxUser } from './models/ItemxUser';
 import { World } from './models/World';
 import { Mission } from './models/Mission';
+import { Enemy } from './models/Enemy';
 import { CardxUser } from './models/CardxUser';
 require("./models/Associations");
 
@@ -30,6 +31,7 @@ app.use("/api/card",require("./routes/card/Card"));
 app.use("/api/item",require("./routes/item/Item"));
 app.use("/api/user/item", require("./routes/item/ItemxUser"));
 app.use("/api/world", require("./routes/world/WorldRoute"));
+app.use("/api/enemy", require("./routes/EnemyRoute/EnemyRoute"));
 app.use("/api/cardxuser", require("./routes/card/CardxUserRoute"));
 // Server running
 database
