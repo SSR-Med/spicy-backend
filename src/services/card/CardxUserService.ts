@@ -21,3 +21,17 @@ export async function getCardsxUser(userId: number) {
     });
     return cards;
 }
+
+export async function getCardxUser(userCardId: number) {
+    const card = await CardxUser.findOne({
+        where: { id: userCardId },
+        include: [
+            {
+                model: Card,
+                attributes: ['name']
+            }
+        ]
+    });
+    if (!card) throw new httpError("Carta no encontrada", 404);
+    return card;
+}
