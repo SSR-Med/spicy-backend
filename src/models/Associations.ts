@@ -8,6 +8,7 @@ import { Enemy } from "./Enemy";
 import { EventEmitter } from "stream";
 import { Card } from "./Card";
 import { CardxUser } from "./CardxUser";
+import { TeamCard} from "./TeamCard";
 // Associations
 
 User.hasMany(ItemxUser, {onDelete: 'cascade', foreignKey: 'id_user'});
@@ -24,3 +25,7 @@ User.hasMany(CardxUser, {onDelete: 'cascade', foreignKey: 'id_user'});
 CardxUser.belongsTo(User, {foreignKey: 'id_user'});
 Card.hasMany(CardxUser, {onDelete: 'cascade', foreignKey: 'id_card'});
 CardxUser.belongsTo(Card, {foreignKey: 'id_card'});
+User.hasMany(TeamCard, {foreignKey: 'userId'});
+TeamCard.belongsTo(User, {foreignKey: 'userId'});
+CardxUser.hasMany(TeamCard, {foreignKey: 'userCardId'});
+TeamCard.belongsTo(CardxUser, {foreignKey: 'userCardId'});
