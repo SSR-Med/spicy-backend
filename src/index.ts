@@ -21,6 +21,7 @@ import { World } from './models/World';
 import { Mission } from './models/Mission';
 import { Enemy } from './models/Enemy';
 import { CardxUser } from './models/CardxUser';
+import { TeamCard } from './models/TeamCard';
 require("./models/Associations");
 
 // Routes
@@ -33,6 +34,7 @@ app.use("/api/user/item", require("./routes/item/ItemxUser"));
 app.use("/api/world", require("./routes/world/WorldRoute"));
 app.use("/api/enemy", require("./routes/EnemyRoute/EnemyRoute"));
 app.use("/api/cardxuser", require("./routes/card/CardxUserRoute"));
+app.use("/api/teamcard", require("./routes/card/TeamCardRoute"));
 // Server running
 database
   .authenticate()
