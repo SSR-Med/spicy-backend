@@ -21,7 +21,7 @@ router.get("/",verifyToken, async (req,res) => {
 
 router.post("/",verifyToken,teamCardValidator, async (req, res) => {
     try {
-        const response = await createTeamCard(req.body);
+        const response = await createTeamCard({userCardId: Number(req.params.userCardId), userId: Number(req.params.idToken)});
         res.status(200).json(response);
     } catch (error) {
         errorHandler(error,res);
