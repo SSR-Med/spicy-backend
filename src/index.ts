@@ -1,7 +1,7 @@
 // Dependencies
 import express from 'express';
 const cors = require("cors");
-const gachaRoute = require('./routes/GachaRoute/GachaRoute');
+const gachaRoute = require('./routes/user/GachaRoute');
 // Constants
 import {port} from "./config/Constants";
 // Database
@@ -12,7 +12,6 @@ const app = express();
 // Middleware and json
 app.use(express.json());
 app.use(cors());
-app.use("/gacha", gachaRoute);
 // Models
 import {User} from "./models/User"
 import {Card} from "./models/Card";
@@ -23,6 +22,7 @@ import { Mission } from './models/Mission';
 import { Enemy } from './models/Enemy';
 import { CardxUser } from './models/CardxUser';
 import { TeamCard } from './models/TeamCard';
+import { Casino } from './models/Casino';
 require("./models/Associations");
 
 // Routes

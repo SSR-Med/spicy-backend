@@ -2,13 +2,13 @@
 import express from 'express';
 // Services
 import { changePassword, getName, deleteSelf, register, getRole, checkAdmin,
-    getResources
+    getResources, modifyResources
 } from '../../services/user/UserService';
 import { createToken } from '../../helpers/Token';
 // Custom error
 import { errorHandler } from '../../config/CustomError';
 // Schemas
-import { changePasswordValidator, validateRegister } from '../../schemas/UserSchema';
+import { changePasswordValidator, validateRegister, modifyResourcesValidator } from '../../schemas/UserSchema';
 // Helpers
 import { verifyToken } from '../../helpers/Token';
 
@@ -83,6 +83,15 @@ router.get("/admin", verifyToken, async (req,res) => {
 router.get("/resources", verifyToken, async (req,res) => {
     try{
         const response = await getResources(Number(req.params.idToken));
+        res.status(200).json(response);
+    }catch(error){
+        errorHandler(error,res);
+    }
+})
+
+router.patch("/resources", verifyToken, modifyResourcesValidator, async (req,res) => {
+    try{
+        const response = await modifyResources(Number(req.params.idToken),req.body.energy,req.body.tokens);
         res.status(200).json(response);
     }catch(error){
         errorHandler(error,res);
