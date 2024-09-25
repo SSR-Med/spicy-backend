@@ -48,8 +48,14 @@ const changePasswordSchema = z.object({
     newPassword: z.string().min(1),
 }).strict()
 
+const resourceSchema = z.object({
+    energy: z.number().int().min(0),
+    tokens: z.number().int().min(0)
+}).strict()
+
 // Validator
 export const validateRegister = validate(registerSchema, "body");
 export const createUserValidator = validate(createUserSchema, "body");
 export const modifyUserValidator = validate(modifyUserSchema, "body");
 export const changePasswordValidator = validate(changePasswordSchema, "body");
+export const modifyResourcesValidator = validate(resourceSchema, "body");
