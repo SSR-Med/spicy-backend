@@ -73,5 +73,14 @@ export async function checkAdmin(id:number){
 export async function getResources(id:number){
     const user = await User.findOne({where:{id:id}});
     if(!user) throw new httpError("Usuario no encontrado",404);
-    return {energy:user.energy,boosters:user.boosters,tokens:user.tokens};
+    return {energy:user.energy,tokens:user.tokens};
+}
+
+export async function modifyResources(id:number,energy:number,tokens:number){
+    const user = await User.findOne({where:{id:id}});
+    if(!user) throw new httpError("Usuario no encontrado",404);
+    const newEnergy = user.energy + energy;
+    const newTokens = user.tokens + tokens;
+    await user.update({energy:newEnergy,tokens:newTokens});
+    return {message:"Recursos actualizados"};
 }
