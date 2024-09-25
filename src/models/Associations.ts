@@ -5,10 +5,11 @@ import { ItemxUser } from "./ItemxUser";
 import { World } from "./World";
 import { Mission } from "./Mission";
 import { Enemy } from "./Enemy";
-import { EventEmitter } from "stream";
 import { Card } from "./Card";
 import { CardxUser } from "./CardxUser";
 import { TeamCard} from "./TeamCard";
+import { Casino } from "./Casino";
+import { CasinoXCard } from "./CasinoXCard";
 // Associations
 
 User.hasMany(ItemxUser, {onDelete: 'cascade', foreignKey: 'id_user'});
@@ -29,3 +30,7 @@ User.hasMany(TeamCard, {foreignKey: 'userId'});
 TeamCard.belongsTo(User, {foreignKey: 'userId'});
 CardxUser.hasMany(TeamCard, {foreignKey: 'userCardId'});
 TeamCard.belongsTo(CardxUser, {foreignKey: 'userCardId'});
+Casino.hasMany(CasinoXCard, {foreignKey: 'id_casino'});
+CasinoXCard.belongsTo(Casino, {foreignKey: 'id_casino'});
+Card.hasMany(CasinoXCard, {foreignKey: 'id_card'});
+CasinoXCard.belongsTo(Card, {foreignKey: 'id_card'});
