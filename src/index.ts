@@ -1,7 +1,7 @@
 // Dependencies
 import express from 'express';
 const cors = require("cors");
-const gachaRoute = require('./routes/user/GachaRoute');
+const gachaRoute = require('./routes/GachaRoute/GachaRoute');
 // Constants
 import {port} from "./config/Constants";
 // Database
