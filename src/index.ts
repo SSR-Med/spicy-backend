@@ -21,6 +21,7 @@ import { Mission } from './models/Mission';
 import { Enemy } from './models/Enemy';
 import { CardxUser } from './models/CardxUser';
 import { TeamCard } from './models/TeamCard';
+import { Casino } from './models/Casino';
 require("./models/Associations");
 
 // Routes
