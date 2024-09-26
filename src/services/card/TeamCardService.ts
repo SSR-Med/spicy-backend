@@ -42,3 +42,9 @@ export async function deleteTeamcard(teamCardId: number) {
     await teamCard.destroy();
     return {message: "Carta eliminada del equipo del usuario" };
 }
+
+export async function getTeamCard(teamCardId: number) {
+    const teamCard = await TeamCard.findOne({ where: {id: teamCardId}});
+    if (!teamCard) throw new httpError("Carta no encontrada", 404);
+    return teamCard;
+}

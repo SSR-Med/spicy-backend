@@ -1,7 +1,7 @@
 import express from "express";
 
 //Services
-import { createTeamCard, deleteTeamcard, getTeamCardsByUser } from "../../services/card/TeamCardService";
+import { createTeamCard, deleteTeamcard, getTeamCard, getTeamCardsByUser } from "../../services/card/TeamCardService";
 // Helpers
 import { verifyToken } from "../../helpers/Token";
 // Custom error
@@ -31,6 +31,15 @@ router.post("/",verifyToken,teamCardValidator, async (req, res) => {
 router.delete("/:id",verifyToken, async (req, res) => {
     try {
         const response = await deleteTeamcard(Number(req.params.id));
+        res.status(200).json(response);
+    } catch (error) {
+        errorHandler(error,res);
+    }
+});
+
+router.get("/:id",verifyToken, async (req, res) => {
+    try {
+        const response = await getTeamCard((Number(req.params.id)));
         res.status(200).json(response);
     } catch (error) {
         errorHandler(error,res);
