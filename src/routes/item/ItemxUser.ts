@@ -1,7 +1,7 @@
 // Dependencies
 import express from 'express';
 // Services
-import { getQuantityItem4User, getItemxUser, createItemxUser, deleteItemxUser } from '../../services/item/ItemxUserService';
+import { getQuantityItem4User, getItemsxUser, createItemxUser, deleteItemxUser } from '../../services/item/ItemxUserService';
 // Helpers
 import { checkAdmin } from '../../helpers/user/UserHelper';
 import { verifyToken } from '../../helpers/Token';
@@ -10,9 +10,9 @@ import { errorHandler } from '../../config/CustomError';
 
 const router = express.Router();
 
-router.get("/",verifyToken,checkAdmin,async (req,res) => {
+router.get("/:userId",verifyToken,checkAdmin,async (req,res) => {
     try {
-        const items = await getItemxUser();
+        const items = await getItemsxUser(Number(req.params.userId));
         res.status(200).json(items);
     } catch (error) {
         errorHandler(error,res);

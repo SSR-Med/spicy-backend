@@ -1,5 +1,5 @@
 // Dependencies
-import { fn } from "sequelize";
+import { fn, where } from "sequelize";
 import Sequelize from "sequelize";
 // Models
 import { ItemxUser } from "../../models/ItemxUser";
@@ -38,8 +38,17 @@ export async function getQuantityItem4User(userId: number) {
     return itemQuantityMap;
 }
 
-export async function getItemxUser(){
-    const items = await ItemxUser.findAll();
+export async function getItemsxUser(userId: number) {
+    const items = await ItemxUser.findAll({
+        where : { id_user: userId },
+        include: [
+            {
+                model: Item,
+                attributes: ['id','name','xp'],
+            }
+        ]
+        
+});
     return items
 }
 
