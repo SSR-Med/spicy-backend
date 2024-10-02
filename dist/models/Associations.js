@@ -1,0 +1,31 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// Models
+const User_1 = require("./User");
+const Item_1 = require("./Item");
+const ItemxUser_1 = require("./ItemxUser");
+const World_1 = require("./World");
+const Mission_1 = require("./Mission");
+const Enemy_1 = require("./Enemy");
+const Card_1 = require("./Card");
+const CardxUser_1 = require("./CardxUser");
+const TeamCard_1 = require("./TeamCard");
+// Associations
+User_1.User.hasMany(ItemxUser_1.ItemxUser, { onDelete: 'cascade', foreignKey: 'id_user' });
+ItemxUser_1.ItemxUser.belongsTo(User_1.User, { foreignKey: 'id_user' });
+Item_1.Item.hasMany(ItemxUser_1.ItemxUser, { onDelete: 'cascade', foreignKey: 'id_item' });
+ItemxUser_1.ItemxUser.belongsTo(Item_1.Item, { foreignKey: 'id_item' });
+World_1.World.hasMany(Mission_1.Mission, { onDelete: 'cascade', foreignKey: 'worldId' });
+Mission_1.Mission.belongsTo(World_1.World, { foreignKey: 'worldId' });
+Card_1.Card.hasMany(Enemy_1.Enemy, { onDelete: 'cascade', foreignKey: 'cardId' });
+Enemy_1.Enemy.belongsTo(Card_1.Card, { foreignKey: 'cardId' });
+Mission_1.Mission.hasMany(Enemy_1.Enemy, { onDelete: 'cascade', foreignKey: 'missionId' });
+Enemy_1.Enemy.belongsTo(Mission_1.Mission, { foreignKey: 'missionId' });
+User_1.User.hasMany(CardxUser_1.CardxUser, { onDelete: 'cascade', foreignKey: 'id_user' });
+CardxUser_1.CardxUser.belongsTo(User_1.User, { foreignKey: 'id_user' });
+Card_1.Card.hasMany(CardxUser_1.CardxUser, { onDelete: 'cascade', foreignKey: 'id_card' });
+CardxUser_1.CardxUser.belongsTo(Card_1.Card, { foreignKey: 'id_card' });
+User_1.User.hasMany(TeamCard_1.TeamCard, { foreignKey: 'userId' });
+TeamCard_1.TeamCard.belongsTo(User_1.User, { foreignKey: 'userId' });
+CardxUser_1.CardxUser.hasMany(TeamCard_1.TeamCard, { foreignKey: 'userCardId' });
+TeamCard_1.TeamCard.belongsTo(CardxUser_1.CardxUser, { foreignKey: 'userCardId' });
