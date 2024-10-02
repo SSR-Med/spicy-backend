@@ -10,9 +10,9 @@ import { errorHandler } from '../../config/CustomError';
 
 const router = express.Router();
 
-router.get("/:userId",verifyToken,checkAdmin,async (req,res) => {
+router.get("/",verifyToken,async (req,res) => {
     try {
-        const items = await getItemsxUser(Number(req.params.userId));
+        const items = await getItemsxUser(Number(req.params.idToken));
         res.status(200).json(items);
     } catch (error) {
         errorHandler(error,res);

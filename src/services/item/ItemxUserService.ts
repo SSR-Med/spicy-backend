@@ -58,8 +58,10 @@ export async function createItemxUser(userId: number, itemId: number) {
 }
 
 export async function deleteItemxUser(userId: number, itemId: number) {
-    const item = await ItemxUser.findOne({ where: { id_user: userId, id_item: itemId } });
-    if(!item) throw new httpError("Item no encontrado", 404);
+    const item = await ItemxUser.findOne({ where: { id_user: userId, id: itemId } });
+    //console.log('Item encontrado:', userId);
+    if (!item) throw new httpError("Item no encontrado", 404);
     await item.destroy();
+    //console.log('Item eliminado:', item);
     return { message: "Item eliminado" };
 }
